@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View, TextInput, Pressable, ToastAndroid,
 import React, { useState } from 'react'
 import axios from 'axios'
 import { SERVER_URL } from "../../constants/common";
+import { useRouter } from 'expo-router';
 
 const AddDetails = () => {
     const [employeeDetails, setEmployeeDetails] = useState({
@@ -15,6 +16,7 @@ const AddDetails = () => {
         designation: "",
         activeEmployee: true
     })
+    const router = useRouter();
 
     const onEmployeeRegisterHandler = async () => {
         if (!employeeDetails) {
@@ -47,13 +49,12 @@ const AddDetails = () => {
                     activeEmployee: true
                 }
             ))
+            router.replace('/(home)/employees');
         }
         catch (error) {
             console.log("Unable to save thr data.", error);
             Alert.alert("Error while saving the employee data")
         }
-
-
     }
 
     return (

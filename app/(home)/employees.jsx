@@ -4,6 +4,7 @@ import axios from 'axios';
 import { SERVER_URL } from "../../constants/common";
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import SearchResults from "../../components/SearchResults";
 
 const Employee = () => {
     const [employees, setEmployees] = useState([]);
@@ -23,7 +24,6 @@ const Employee = () => {
         fetchEmployee();
     }, []);
 
-    console.log(employees)
     return (
         <View style={{ flex: 1, backgroundColor: "white" }}>
             <View style={{ flexDirection: "row", alignItems: "center", backgroundColor: "white" }}>
@@ -49,16 +49,26 @@ const Employee = () => {
 
                     {employees.length > 0 &&
                         <View>
-                            <Pressable>
-                                <AntDesign name="pluscircle" size={24} color="black" />
+                            <Pressable onPress={() => router.push("/(home)/adddetails")}>
+                                <AntDesign name="pluscircle" size={24} color="#0072b1" />
                             </Pressable>
                         </View>
                     }
                 </Pressable>
             </View>
-            <Pressable onPress={() => router.push("/(home)/adddetails")}>
-                <AntDesign name="pluscircle" size={24} color="#0072b1" />
-            </Pressable>
+
+            {employees.length > 0 ? (
+                <SearchResults data={employees} input={input} setInput={setInput} />
+            ) :
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                    <Text>No Data</Text>
+                    <Text>Press on the plus button and add your Employee</Text>
+                    <Pressable onPress={() => router.push("/(home)/adddetails")}>
+                        <AntDesign style={{ marginTop: 30 }} name="pluscircle" size={24} color="#0072b1" />
+                    </Pressable>
+                </View>
+            }
+
         </View>
     )
 }

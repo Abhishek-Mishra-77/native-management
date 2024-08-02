@@ -3,18 +3,16 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const employeeRoutes = require("./routes/employeeRoutes");
+const employeeAttendanceRoutes = require("./routes/employeeAttendanceRoutes");
 
 const app = express();
 const port = 8000;
-app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}));
+app.use(cors());
 
 app.use(express.json());
 
 app.use("/", employeeRoutes);
-
+app.use("/", employeeAttendanceRoutes);
 
 mongoose.connect("mongodb+srv://abhishekomr07:abhi123@cluster0.4b6ewmy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => {
