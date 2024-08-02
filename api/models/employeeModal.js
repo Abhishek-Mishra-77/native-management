@@ -14,16 +14,16 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    joiningData: {
+    joiningDate: {
         type: String,
         required: true
     },
-    dataOfBirth: {
+    dateOfBirth: {
         type: String,
         required: true
     },
     salary: {
-        type: Number,
+        type: String,
         required: true
     },
     activeEmployee: {

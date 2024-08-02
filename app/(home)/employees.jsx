@@ -23,7 +23,7 @@ const Employee = () => {
         fetchEmployee();
     }, []);
 
-
+    console.log(employees)
     return (
         <View style={{ flex: 1, backgroundColor: "white" }}>
             <View style={{ flexDirection: "row", alignItems: "center", backgroundColor: "white" }}>
